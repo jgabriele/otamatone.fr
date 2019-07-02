@@ -37,6 +37,8 @@ app.get('/news', (request, response) => {
 
 	console.log('Page de news')
 
+	response.render('layouts/news/newsPage')
+
 })
 
 // SHOP 

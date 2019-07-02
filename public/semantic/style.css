@@ -1,6 +1,18 @@
 .container {
 	
 	margin-top: 100px;
-	border: 1px solid black;
+
+}
+/* Partie sous les projecteurs */
+
+.ui.horizontal.divider {
+
+	margin-bottom: 20px;
+
+}
+
+.ui.divider {
+
+	margin-top: 40px;
 
 }
