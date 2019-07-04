@@ -3,6 +3,21 @@
 	margin-top: 100px;
 
 }
+
+/* Partie news */
+
+.card-news{
+	margin-top: 30px !important;
+}
+
+.moreButton{
+	margin-top: 5px !important;
+}
+
+/* !! Partie news !! */
+
+
+
 /* Partie sous les projecteurs */
 
 .ui.horizontal.divider {
