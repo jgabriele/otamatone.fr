@@ -17,7 +17,6 @@
 /* !! Partie news !! */
 
 
-
 /* Partie sous les projecteurs */
 
 .ui.horizontal.divider {
@@ -42,6 +41,7 @@
 }
 /* ! Partie cours ! */
 
+
 /* articles part */
 #articlesPart {
 
@@ -50,19 +50,6 @@
 }
 /* ! articles part ! */
 
-/* Footer part */
-#footerPart {
-
-	margin-top: 50px;
-
-}
-
-#separator2 {
-
-	margin-bottom: 10px;
-
-}
-/* ! Footer part ! */
 
 /* News page */
 #groupCards {
@@ -72,6 +59,7 @@
 }
 
 /* ! News page ! */
+
 
 /* Articles part */
 #kumamonButton {
@@ -86,3 +74,26 @@
 
 }
 /* ! Articles part ! */
+
+/* Course part */
+#coursePart {
+
+	margin-top: 50px;
+	margin-bottom: 50px !important;
+
+}
+/* ! Course part ! */
+
+/* Footer part */
+#footerPart {
+
+	margin-top: 50px;
+
+}
+
+#separator2 {
+
+	margin-bottom: 10px;
+
+}
+/* ! Footer part ! */
