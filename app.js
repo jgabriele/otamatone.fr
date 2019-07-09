@@ -20,6 +20,8 @@ app.get('/accueil', (request, response) => {
 
 	console.log('Page d\'acceuil')
 
+	let Test = require('./models/test')
+
 	response.render('layouts/home/accueil')
 
 })
