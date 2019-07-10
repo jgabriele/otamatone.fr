@@ -2,6 +2,23 @@
 let express = require('express')
 let app = express()
 
+// Database Connexion
+const MongoClient = require('mongodb').MongoClient
+
+const url = "mongodb://localhost:27017/otamatone_fr"
+
+const param = { useNewUrlParser: true }
+
+MongoClient.connect(url, param, (err, db) => {
+
+	if (err) throw err
+
+	console.log("Connected to database !")
+
+	db.close()
+
+})
+
 
 // TEMPLATE ENGINE EJS
 app.set('view engine', 'ejs')
@@ -18,6 +35,24 @@ app.use('/assets', express.static('images'))
 app.get('/accueil', (request, response) => {
 
 	console.log('Page d\'acceuil')
+
+	MongoClient.connect(url, param, (err, db) => {
+
+		let dbo = db.db("otamatone_fr")
+
+		let query = {}
+
+		dbo.collection("videos").findOne(query, (err, result) => {
+
+			if (err) throw err
+
+			console.log(result)
+
+			db.close()
+
+		})
+
+	})
 
 	response.render('layouts/home/accueil')
 
