@@ -4,99 +4,16 @@
 <!-- INCLUDE de la partie HEADER -->
 <% include ../header %>
 
-<section id="groupCards" class="ui container">
+<section class="ui container" id="newsList">
+    <div class="ui horizontal divider"><h1>News</h1></div>
+     <!-- INCLUDE des Top News -->
+     <% include topNews %>
 
-    <div class="ui horizontal divider"><h2>News</h2></div>
-        
-        <!-- GROUP CARDS -->
-        <div class="ui centered link cards card-news">
-            <!-- First card -->
-            <div class="card">
-
-                <div class="image">
-                    <img src="https://gloimg.gbtcdn.com/soa/gb/pdm-product-pic/Electronic/2018/09/14/goods_img_big-v1/20180914150034_12736.jpg">
-                </div>
-
-                <div class="content">
-
-                    <div class="header">News 1</div>
-
-                    <div class="meta">
-                        <span class="date">Date de la news 1</span>
-                    </div>
-
-                    <div class="description">Ceci est une description de news</div>
-
-                    <button id="Test3" class="mini ui primary button moreButton right labeled icon">En savoir plus <i class="right arrow icon"></i></button>
-                </div>
-
-                <div class="extra content">
-                    <span><i class="user icon"></i> Auteur de l'article </span>
-                </div>
-
-            </div>
-            <!-- ! First card ! -->
-            
-            <!-- Second card -->
-            <div class="card">
-
-                <div class="image">
-                    <img src="https://gloimg.gbtcdn.com/soa/gb/pdm-product-pic/Electronic/2018/09/14/goods_img_big-v1/20180914150034_12736.jpg">
-                </div>
-
-                <div class="content">
-
-                    <div class="header">News 2</div>
-
-                    <div class="meta">
-                        <span class="date">Date de la news 2</span>
-                    </div>
-
-                    <div class="description">Ceci est une description de news</div>
-
-                    <button id="Test2" class="mini ui primary button moreButton right labeled icon">En savoir plus <i class="right arrow icon"></i></button>
-
-                </div>
-
-                <div class="extra content">
-                    <span><i class="user icon"></i> Auteur de l'article </span>
-                </div>
-
-            </div>
-            <!-- ! Second card ! -->
-            
-            <!-- Third card -->
-            <div class="card">
-
-                <div class="image">
-                    <img src="https://gloimg.gbtcdn.com/soa/gb/pdm-product-pic/Electronic/2018/09/14/goods_img_big-v1/20180914150034_12736.jpg">
-                </div>
-
-                <div class="content">
-
-                    <div class="header">News 3</div>
-
-                    <div class="meta">
-                        <span class="date">Date de la news 3</span>
-                    </div>
-
-                    <div class="description">Ceci est une description de news</div>
-
-                    <button id="Test1" class="mini ui primary button moreButton right labeled icon">En savoir plus <i class="right arrow icon"></i></button>
-
-                </div>
-
-                <div class="extra content">
-                    <span><i class="user icon"></i> Auteur de l'article </span>
-                </div>
-            </div>
-            <!-- ! Third card ! -->
-            
-        </div>
-        <!-- ! GROUP CARDS ! -->
-
-        <!-- <div class="ui horizontal divider"></div> -->
+     <!-- INCLUDE des regular News -->
+     <% include regularNews %>
 </section>
+  
+
 
 <!-- INCLUDE partie FOOTER -->
 <% include ../footer %>
