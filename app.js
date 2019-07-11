@@ -1,6 +1,7 @@
 "use strict";
 // IMPORT
 let express = require('express')
+let path = require('path')
 let app = express()
 
 // Database Connexion
@@ -23,10 +24,10 @@ MongoClient.connect(url, param, (err, db) => {
 
 // TEMPLATE ENGINE EJS
 app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
 
 // STATIC FILES
-app.use('/assets', express.static('public'))
-app.use('/assets', express.static('images'))
+app.use('/assets', express.static(path.join(__dirname, 'public')))
 
 
 // ROUTING
