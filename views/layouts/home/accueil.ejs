@@ -1,6 +1,3 @@
-<!-- INCLUDE du document HTML -->
-<% include ../index %>
-
 <!-- INCLUDE de la partie HEADER -->
 <% include ../header %>
 
@@ -12,45 +9,47 @@
 	<div class="ui three column doubling stackable grid">
 		
 		<!-- First column -->
+		<% resultats.forEach(function(video) { %>
 		<div class="column">
 			
 			<div class="ui segment">
 
-				<h3 class="ui center aligned header">Vidéo n°1</h3>
+				<h3 class="ui center aligned header"><%= video.titleVideo %></h3>
 				
-				<div class="ui placeholder"><div class="square image"></div></div>
+				<div><iframe src="<%= video.video %>" frameborder="0"></iframe></div>
 
 			</div>
 
 		</div>
+		<% }) %>
 		<!-- ! First column ! -->
 
 		<!-- Second column -->
-		<div class="column">
+		<!-- <div class="column">
 			
 			<div class="ui segment">
 				
 				<h3 class="ui center aligned header">Vidéo n°2</h3>
 				
 				<div class="ui placeholder"><div class="square image"></div></div>
-
+		
 			</div>
-
-		</div>
+		
+		</div> -->
 		<!-- ! Second column ! -->
 		
 		<!-- Third column -->
-		<div class="column">
+		<!-- <div class="column">
 			
 			<div class="ui segment">
 				
 				<h3 class="ui center aligned header">Vidéo n°3</h3>
 				
 				<div class="ui placeholder"><div class="square image"></div></div>
-
+		
 			</div>
-
-		</div>
+		
+		</div> -->
 		<!-- ! Third column ! -->
 
 	</div>
