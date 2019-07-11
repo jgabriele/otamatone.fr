@@ -31,41 +31,11 @@
 	font-size: 20px;
 }
 
-/*.nextNews1Title, .nextNews2Title{*/
-/*	height: 100px;*/
-/*	font-size: 16px;*/
-/*}*/
 
 .firstNewsTitle p, .nextNews1Title p, .nextNews2Title p{
 	/*margin-bottom: 40px;*/
 }
 
-.firstNews{
-	/*width: 60%;*/
-	/*border: 1px gray solid;*/
-	/*border-radius: 2px;*/
-    /*height: 40em;*/
-}
-
-.nextNews{
-	/*width: 40%;*/
-	/*display: flex;*/
-	/*flex-wrap: wrap;*/
-	/*flex-direction: column;*/
-
-}
-.nextNews1, .nextNews2{
-	/*height: 200px;*/
-	/*border: 1px gray solid;*/
-	/*border-radius: 2px;*/
-}
-.firstNewsContainer, .nextNews1Container, .nextNews2Container{
-	/*height: 15em;*/
-	/*padding: 10px;*/
-	/*display: flex;*/
-	/*flex-wrap: wrap;*/
-	/*justify-content: space-between;*/
-}
 .firstNewsContent article p, .nextNews1Content article p, .nextNews2Content article p{
 	padding-top: 10px;
 }
