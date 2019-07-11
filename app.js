@@ -1,3 +1,4 @@
+"use strict";
 // IMPORT
 let express = require('express')
 let app = express()
@@ -15,7 +16,7 @@ MongoClient.connect(url, param, (err, db) => {
 
 	console.log("Connected to database !")
 
-	db.close()
+	
 
 })
 
@@ -38,23 +39,20 @@ app.get('/accueil', (request, response) => {
 
 	MongoClient.connect(url, param, (err, db) => {
 
+		if (err) throw err
+
 		let dbo = db.db("otamatone_fr")
 
-		let query = {}
-
-		dbo.collection("videos").findOne(query, (err, result) => {
+		dbo.collection("videos").find().limit(3).toArray((err, results) => {
 
 			if (err) throw err
-
-			console.log(result)
-
-			db.close()
+		
+			response.render('layouts/home/accueil', {resultats: results})
 
 		})
 
 	})
 
-	response.render('layouts/home/accueil')
 
 })
 
