@@ -1,7 +1,25 @@
+"use strict";
 // IMPORT
 let express = require('express')
 let path = require('path')
 let app = express()
+
+// Database Connexion
+const MongoClient = require('mongodb').MongoClient
+
+const url = "mongodb://localhost:27017/otamatone_fr"
+
+const param = { useNewUrlParser: true }
+
+MongoClient.connect(url, param, (err, db) => {
+
+	if (err) throw err
+
+	console.log("Connected to database !")
+
+	
+
+})
 
 
 // TEMPLATE ENGINE EJS
@@ -20,9 +38,22 @@ app.get('/accueil', (request, response) => {
 
 	console.log('Page d\'acceuil')
 
-	let Test = require('./models/test')
+	MongoClient.connect(url, param, (err, db) => {
 
-	response.render('layouts/home/accueil')
+		if (err) throw err
+
+		let dbo = db.db("otamatone_fr")
+
+		dbo.collection("videos").find().limit(3).toArray((err, results) => {
+
+			if (err) throw err
+		
+			response.render('layouts/home/accueil', {resultats: results})
+
+		})
+
+	})
+
 
 })
 

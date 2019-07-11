@@ -13,9 +13,8 @@
 .moreButton{
 	margin-top: 5px !important;
 }
-#topNews{
-	display: flex;
-	flex-direction: row;
+#topNews button, .classicNews button{
+    margin-top: 10px !important;
 }
 .firstNewsTitle, .nextNews1Title, .nextNews2Title{
 	background-image: url("https://zenmarketcdn.azureedge.net/blog/pczl4gd3.ja4");
@@ -25,49 +24,23 @@
 	background-position: center center;
 	text-align: center;
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	height: 200px;
 	color: white;
 	justify-content: center;
 	font-size: 20px;
 }
-.nextNews1Title, .nextNews2Title{
-	height: 100px;
-	font-size: 16px;
-}
+
+
 .firstNewsTitle p, .nextNews1Title p, .nextNews2Title p{
-	margin-bottom: 40px;
+	/*margin-bottom: 40px;*/
 }
 
-.firstNews{
-	width: 60%;
-	height: 400px;
-	border: 1px gray solid;
-	border-radius: 2px;
-}
-.nextNews{
-	width: 40%;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-}
-.nextNews1, .nextNews2{
-	height: 200px;
-	border: 1px gray solid;
-	border-radius: 2px;
-}
-.firstNewsContainer, .nextNews1Container, .nextNews2Container{
-	height: 15em;
-	padding: 10px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-.firstNewsContent article, .nextNews1Content article, .nextNews2Content article{
-	height: 100%;
+.firstNewsContent article p, .nextNews1Content article p, .nextNews2Content article p{
+	padding-top: 10px;
 }
 
-.firstNewsExtras, .nextNews1Extras, .nextNews2Extras{
+.firstNewsExtras, .nextNewsExtras{
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -89,6 +62,12 @@
 .ui.divider {
 
 	margin-top: 40px;
+
+}
+
+iframe {
+
+	margin-left: 14px;
 
 }
 /* ! Partie sous les projecteurs ! */
@@ -158,3 +137,15 @@
 
 }
 /* ! Footer part ! */
+
+/* Media Queries */
+
+@media screen and (min-width: 768px){
+
+    .firstNewsTitle, .nextNews1Title, .nextNews2Title {
+        height: 300px;
+    }
+    .nextNews1Title, .nextNews2Title{
+        height: 100px !important;
+    }
+}
