@@ -5,9 +5,7 @@ let app = express()
 
 // Database Connexion
 const MongoClient = require('mongodb').MongoClient
-
 const url = "mongodb://localhost:27017/otamatone_fr"
-
 const param = { useNewUrlParser: true }
 
 MongoClient.connect(url, param, (err, db) => {

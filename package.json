@@ -23,5 +23,6 @@
     "googleapis": "^40.0.1",
     "mongodb": "^3.2.7",
     "nodemon": "^1.19.1"
-  }
+  },
+  "devDependencies": {}
 }
