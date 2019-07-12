@@ -1,4 +1,3 @@
-"use strict";
 // IMPORT
 let express = require('express')
 let path = require('path')
@@ -16,8 +15,6 @@ MongoClient.connect(url, param, (err, db) => {
 	if (err) throw err
 
 	console.log("Connected to database !")
-
-	
 
 })
 
@@ -42,18 +39,17 @@ app.get('/accueil', (request, response) => {
 
 		if (err) throw err
 
-		let dbo = db.db("otamatone_fr")
+		let dbo = db.db('otamatone_fr')
 
 		dbo.collection("videos").find().limit(3).toArray((err, results) => {
 
 			if (err) throw err
-		
-			response.render('layouts/home/accueil', {resultats: results})
 
+			response.render('layouts/home/accueil', {resultats: results})
+		
 		})
 
 	})
-
 
 })
 
@@ -62,7 +58,21 @@ app.get('/apprendre', (request, response) => {
 
 	console.log('Apprendre l\'otamatone')
 
-	response.render('layouts/learn/apprendre')
+	MongoClient.connect(url, param, (err, db) => {
+
+		if (err) throw err
+
+		let dbo = db.db('otamatone_fr')
+
+		dbo.collection("courses").find().toArray((err, results) => {
+
+			if (err) throw err
+
+			response.render('layouts/learn/apprendre', {courses: results})
+
+		})
+
+	})
 
 })
 
