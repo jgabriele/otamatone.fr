@@ -31,11 +31,6 @@
 	font-size: 20px;
 }
 
-
-.firstNewsTitle p, .nextNews1Title p, .nextNews2Title p{
-	/*margin-bottom: 40px;*/
-}
-
 .firstNewsContent article p, .nextNews1Content article p, .nextNews2Content article p{
 	padding-top: 10px;
 }
@@ -64,12 +59,18 @@
 	margin-top: 40px;
 
 }
-
-iframe {
-
-	margin-left: 14px;
-
+.iframeContainer{
+	display: flex;
+	justify-content: center;
 }
+.bigVidContent{
+	display: flex !important;
+	justify-content: center !important;
+}
+.bigVidContent .segment{
+	width: 400px !important;
+}
+
 /* ! Partie sous les projecteurs ! */
 
 
@@ -147,5 +148,13 @@ iframe {
     }
     .nextNews1Title, .nextNews2Title{
         height: 100px !important;
-    }
+	}
+	.bigVidContent .segment{
+		width: 100% !important;
+	}
+}
+@media screen and (min-width: 992px) and (max-width: 1200px){
+	iframe{
+		width: 260px;
+	}
 }
