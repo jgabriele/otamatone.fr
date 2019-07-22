@@ -9,8 +9,7 @@
 	<div class="ui three column doubling stackable grid">
 		
 		<!-- First column -->
-		<% resultats.forEach(function(video) { %>
-
+		<% videos.forEach(function(video) { %>
 		<div class="column bigVidContent">
 			
 			<div class="ui segment">
@@ -22,7 +21,6 @@
 			</div>
 
 		</div>
-
 		<% }) %>
 		<!-- ! First column ! -->
 	</div>
@@ -40,17 +38,18 @@
 	<div class="ui three column doubling stackable grid">
 		
 		<!-- First column -->
+        <% courses.forEach(function(course) { %>
 		<div class="column">
 			
 			<div class="ui center aligned segment">
 				
-				<h3 class="ui center aligned header">Cours n°1</h3>
+				<h3 class="ui center aligned header"><%= course.nameCourse %></h3>
 
 
-					<img src="https://via.placeholder.com/250x200" alt="Une image" class="ui centered medium image">
+					<img src="<%= course.imageCourse %>" alt="Une image" class="ui centered medium image">
 					
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam voluptatum non dolor reprehenderit aliquid officiis, veritatis magnam iste sunt culpa provident suscipit ea. Deleniti animi, facilis, temporibus odio commodi iste!
+						 <%= course.description %>
 					</p>
 
 					<a href="/apprendre" ><button class="ui fluid black button">Découvrir nos cours</button></a>
@@ -58,47 +57,8 @@
 			</div>
 
 		</div>
+        <% }) %>
 		<!-- ! First column ! -->
-		
-		<!-- Second column -->
-		<div class="column">
-			
-			<div class="ui center aligned segment">
-				
-				<h3 class="ui center aligned header">Cours n°2</h3>
-		
-				<img src="https://via.placeholder.com/250x200" alt="Une image" class="ui centered medium image">
-					
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam voluptatum non dolor reprehenderit aliquid officiis, veritatis magnam iste sunt culpa provident suscipit ea. Deleniti animi, facilis, temporibus odio commodi iste!
-				</p>
-		
-				<a href="/apprendre" ><button class="ui fluid black button">Découvrir nos cours</button></a>
-		
-			</div>
-		
-		</div>
-		<!-- ! Second column ! -->
-		
-		<!-- Third column -->
-		<div class="column">
-			
-			<div class="ui center aligned segment">
-				
-				<h3 class="ui center aligned header">Cours n°3</h3>
-		
-				<img src="https://via.placeholder.com/250x200" alt="Une image" class="ui centered medium image">
-					
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam voluptatum non dolor reprehenderit aliquid officiis, veritatis magnam iste sunt culpa provident suscipit ea. Deleniti animi, facilis, temporibus odio commodi iste!
-				</p>
-		
-				<a href="/apprendre" ><button class="ui fluid black button">Découvrir nos cours</button></a>
-		
-			</div>
-		
-		</div>
-		<!-- ! Third column ! -->
 
 	</div>
 
@@ -115,11 +75,12 @@
 	<div class="ui three column doubling stackable grid">
 		
 		<!-- First column -->
+        <% posts.forEach(function(post) { %>
 		<div class="column">
 			
 			<div class="ui segment">
 
-				<h3 class="ui center aligned header">Post n°1</h3>
+				<h3 class="ui center aligned header"><%= post.postTitle %></h3>
 				
 				<div class="ui medium feed">
 					
@@ -133,14 +94,15 @@
 							
 							<p class="date">Il y a 1 semaine</p>
 
-							<p class="summary"><a>randomUser</a> a posté</p>
+							<p class="summary"><%= post.userName %> a posté</p>
 
-							<p class="extra text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat, error, consequatur cum voluptatem eum.
-							</p>
+							<p class="extra text">
+                                <%= post.postContent %>
+                            </p>
 
 							<div class="meta">
 								
-								<a class="like"><i class="like icon"></i> 4 Likes</a>
+								<a class="like"><i class="like icon"></i><%= post.postLike %> Likes</a>
 
 							</div>
 
@@ -153,90 +115,8 @@
 			</div>
 
 		</div>
+        <% }) %>
 		<!-- ! First column ! -->
-
-		<!-- Second column -->
-		<div class="column">
-			
-			<div class="ui segment">
-				
-				<h3 class="ui center aligned header">Post n°2</h3>
-
-				<div class="ui medium feed">
-					
-					<div class="event">
-						
-						<div class="label">
-							<img src="https://via.placeholder.com/100x100" alt="Un avatar">
-						</div>
-
-						<div class="content">
-							
-							<p class="date">Il y a 5 mois</p>
-
-							<p class="summary"><a>Etherium</a> a posté</p>
-
-							<p class="extra text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat, error, consequatur cum voluptatem eum.
-							</p>
-
-							<div class="meta">
-								
-								<a class="like"><i class="like icon"></i> 800 M Likes</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-		<!-- ! Second column ! -->
-		
-		<!-- Third column -->
-		<div class="column">
-			
-			<div class="ui segment">
-
-				<h3 class="ui center aligned header">Post n°3</h3>
-				
-				<div class="ui medium feed">
-					
-					<div class="event">
-						
-						<div class="label">
-							<img src="https://via.placeholder.com/100x100" alt="Un avatar">
-						</div>
-
-						<div class="content">
-							
-							<div class="date">Il y a 1 an</div>
-
-							<p class="summary"><a>randomUser512</a> a posté</p>
-
-							<p class="extra text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat, error, consequatur cum voluptatem eum.
-							</p>
-
-							<div class="meta">
-								
-								<a class="like"><i class="like icon"></i> 15K likes</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-		<!-- ! Third column ! -->
-
 	</div>
 
 	<div class="ui divider"></div>
@@ -252,26 +132,25 @@
 	<div class="ui three column doubling stackable grid">
 		
 		<!-- First column -->
+        <% articles.forEach(function(article) { %>
 		<div class="column">
 			
 			<div class="ui segment">
 				
-				<h3 class="ui center aligned header">Article n°1</h3>
+				<h3 class="ui center aligned header"><%= article.articleName %></h3>
 
 				<div class="ui items">
 					
 					<div class="item">
 						
 						<div class="image">
-							<img src="/assets/images/otamatone-ninja.jpg" alt="Un otamatone">
+							<img src="<%= article.articleImage %>" alt="Un otamatone">
 						</div>
 
 						<div class="content">
-							
-							<a href="/news" class="header">Otamatone Ninja</a>
 
 							<div class="meta">
-								<span>Un otamatone qui se veut discret et meurtrier</span>
+								<span><%= article.articleDescript %></span>
 							</div>
 
 							<div class="extra">
@@ -294,98 +173,8 @@
 			</div>
 
 		</div>
+        <% }) %>
 		<!-- ! First column ! -->
-
-		<!-- Second column -->
-		<div class="column">
-			
-			<div class="ui segment">
-				
-				<h3 class="ui center aligned header">Article n°2</h3>
-
-				<div class="ui items">
-					
-					<div class="item">
-						
-						<div class="image">
-							<img src="/assets/images/otamatone-kumamon.jpg" alt="Un otamatone kumamon">
-						</div>
-
-						<div class="content">
-							
-							<a href="/news" class="header">Otamatone Kumamon</a>
-
-							<div class="meta">
-								<span>Un otamatone déguisé en kumamon</span>
-							</div>
-
-							<div class="extra">
-								
-								<a id="kumamonButton" href="/news" class="ui fluid animated fade blue button" tabindex="0">
-								  <div class="visible content">En savoir plus</div>
-								  <div class="hidden content">
-								    <i class="right arrow icon"></i>
-								  </div>
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-		<!-- ! Second column ! -->
-		
-		<!-- Third column -->
-		<div class="column">
-			
-			<div class="ui segment">
-				
-				<h3 class="ui center aligned header">Article n°3</h3>
-
-				<div class="ui items">
-					
-					<div class="item">
-						
-						<div class="image">
-							<img src="/assets/images/otamatone-kabuki.jpg" alt="Un otamatone kabuki">
-						</div>
-
-						<div class="content">
-							
-							<a href="/news" class="header">Otamatone Kabuki</a>
-
-							<div class="meta">
-								<span>Un otamatone sous les couleurs du théâtre japonais</span>
-							</div>
-
-							<div class="extra">
-								
-								<a href="/news" class="ui fluid animated fade blue button" tabindex="0">
-								  <div class="visible content">En savoir plus</div>
-								  <div class="hidden content">
-								    <i class="right arrow icon"></i>
-								  </div>
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-		<!-- ! Third column ! -->
-
 	</div>
 
 </section>
