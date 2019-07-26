@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5d35a52d161ce5287ca08f5f"},"articleName":"Otamatone Ninja","articleDescript":"Un otamatone qui se veut discret et meurtrier","articleImage":"/assets/images/otamatone-ninja.jpg"}
+{"_id":{"$oid":"5d35a581161ce5287ca08f60"},"articleName":"Otamatone Kumamon","articleDescript":"Un otamatone déguisé en kumamon, célèbre mascotte","articleImage":"/assets/images/otamatone-kumamon.jpg"}
+{"_id":{"$oid":"5d35a5b2161ce5287ca08f61"},"articleName":"Otamatone Kabuki","articleDescript":"Un otamatone sous les couleurs du théâtre japonais","articleImage":"/assets/images/otamatone-kabuki.jpg"}
