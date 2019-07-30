@@ -29,7 +29,7 @@ app.use("/assets", express.static(path.join(__dirname, "public")))
 
 
 // LANDING PAGE
-app.get("/accueil", (request, response) => {
+app.get("/", (request, response) => {
 
 	console.log("Page d'acceuil")
 
@@ -60,11 +60,6 @@ app.get("/accueil", (request, response) => {
 
         function renderData() {
 
-            //console.log("Les données des videos ", renderVideos)
-            //console.log("Les données des cours ", renderCourses)
-            //console.log(renderPosts)
-            //console.log(renderArticles)
-
             response.render("layouts/home/accueil", {
 
                 videos: renderVideos,
@@ -79,8 +74,6 @@ app.get("/accueil", (request, response) => {
         function getDataCourses (err, dataCourses) {
 
             if (err) throw err
-
-            //console.log("Récupération des données cours", renderCourses)
 
             executionNumber++
             renderCourses = dataCourses
@@ -119,7 +112,7 @@ app.get("/accueil", (request, response) => {
         dbo.collection("videos").find().limit(3).toArray(getDataVideos)
         dbo.collection("courses").find().toArray(getDataCourses)
         dbo.collection("posts").find().toArray(getDataPosts)
-        dbo.collection("articles").find().toArray(getDataArticles)
+        dbo.collection("articles").find().limit(3).toArray(getDataArticles)
 
     })
 
@@ -136,7 +129,7 @@ app.get("/apprendre", (request, response) => {
 
 		let dbo = db.db("otamatone_fr")
 
-		dbo.collection("courses").find().toArray((err, results) => {
+		dbo.collection("courses").find().toArray( (err, results) => {
  
 			if (err) throw err
 
@@ -162,7 +155,23 @@ app.get("/shop", (request, response) => {
 
 	console.log("Page shopping")
 
-	response.render("layouts/shop/shopping")
+    MongoClient.connect(url, param, (err, db) => {
+
+        let dbo = db.db("otamatone_fr")
+
+        dbo.collection("articles").find().toArray( (err, dataArticles) => {
+
+            if (err) throw err
+
+            response.render("layouts/shop/shopping", {
+
+                articles: dataArticles
+
+            })
+
+        })
+
+    })	
 
 })
 
@@ -170,6 +179,22 @@ app.get("/shop", (request, response) => {
 app.get("/videos", (request, response) => {
 
 	console.log("Page vidéos")
+
+    MongoClient.connect(url, param, (err, db) => {
+
+        let dbo = db.db("otamatone_fr")
+
+        dbo.collection("videos").find().toArray( (err, dataVideos) => {
+
+            response.render("layouts/videos/video", {
+
+                videos: dataVideos
+
+            })
+
+        })
+
+    })
 
 })
 

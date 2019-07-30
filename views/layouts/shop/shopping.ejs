@@ -1,7 +1,52 @@
 <!-- INCLUDE de la partie header -->
 <% include ../header %>
 
+<section class="ui container">
 
+	<div class="ui horizontal divider"><h2>La boutique</h2></div>
+
+	<div class="ui items">
+		
+		
+	<% articles.forEach(function (article) { %>
+		<div class="item">
+			<div class="ui small image">
+				<img src="<%= article.articleImage %>" alt="Une image d'otamatone">
+			</div>
+
+			<div class="content">
+				<h3 class="header"><%= article.articleName %></h3>
+
+				<div class="description">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, nobis ducimus vitae? Ullam quisquam, iste vitae aspernatur quaerat dolorum numquam distinctio nihil impedit, beatae vel quae repellendus ipsam minus, aut!
+					</p>
+
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias sequi cupiditate, asperiores mollitia magnam dolorem, consectetur reprehenderit illo aut! Illum tempore exercitationem accusamus impedit officiis minima eaque nesciunt, non earum.
+					</p>
+				</div>
+
+				<a id="shopButton1" href="/details" class="ui animated fade right floated button" tabindex="0">
+					<div class="visible content">Acheter</div>
+					<div class="hidden content"><i class="icon cart right"></i></div>
+				</a>
+
+				<a id="shopButton2" href="/details" class="ui animated fade right floated button" tabindex="0">
+					<div class="visible content">Détails</div>
+					<div class="hidden content"><i class="icon arrow right"></i></div>
+				</a>
+				
+
+			</div>
+
+		</div>	
+		<div class="ui section divider"></div>
+	<% }) %>
+
+	</div>
+
+</section>
 
 <!-- INCLUDE de la partie footer -->
 <% include ../footer %>
