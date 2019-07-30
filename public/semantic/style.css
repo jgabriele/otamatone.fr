@@ -134,7 +134,7 @@
 /* ! Footer part ! */
 
 /* shop page */
-#shopButton1, #shopButton2 {
+.ui.animated.fade.right.floated.button {
 	
 	margin-top: 50px;
 

@@ -3,19 +3,11 @@ let express = require("express")
 let path = require("path")
 let app = express()
 
-// Database Connexion
+// Database Params
 const MongoClient = require("mongodb").MongoClient
 const url = "mongodb://localhost:27017/otamatone_fr"
+const dbName = "otamatone_fr"
 const param = { useNewUrlParser: true }
-
-MongoClient.connect(url, param, (err, db) => {
-
-	if (err) throw err
-
-	console.log("Connected to database !")
-
-})
-
 
 // TEMPLATE ENGINE EJS
 app.set("view engine", "ejs")
@@ -33,11 +25,11 @@ app.get("/", (request, response) => {
 
 	console.log("Page d'acceuil")
 
-	MongoClient.connect(url, param, (err, db) => {
+	MongoClient.connect(url, param, (err, client) => {
 
         if (err) throw err
 
-        let dbo = db.db("otamatone_fr")
+        /*let dbo = db.db("otamatone_fr")*/
 
         let executionNumber = 0
         let renderVideos = {}
@@ -109,12 +101,15 @@ app.get("/", (request, response) => {
 
         }
 
-        dbo.collection("videos").find().limit(3).toArray(getDataVideos)
-        dbo.collection("courses").find().toArray(getDataCourses)
-        dbo.collection("posts").find().toArray(getDataPosts)
-        dbo.collection("articles").find().limit(3).toArray(getDataArticles)
+        client.db(dbName).collection("videos").find().limit(3).toArray(getDataVideos)
+        client.db(dbName).collection("courses").find().limit(3).toArray(getDataCourses)
+        client.db(dbName).collection("posts").find().limit(3).toArray(getDataPosts)
+        client.db(dbName).collection("articles").find().limit(3).toArray(getDataArticles)
 
+        client.close()
+        
     })
+
 
 })
 
@@ -123,19 +118,19 @@ app.get("/apprendre", (request, response) => {
 
 	console.log("Apprendre l'otamatone")
 
-	MongoClient.connect(url, param, (err, db) => {
+	MongoClient.connect(url, param, (err, client) => {
 
 		if (err) throw err
 
-		let dbo = db.db("otamatone_fr")
-
-		dbo.collection("courses").find().toArray( (err, results) => {
+		client.db(dbName).collection("courses").find().toArray( (err, results) => {
  
 			if (err) throw err
 
 			response.render("layouts/learn/apprendre", {courses: results})
 
 		})
+    
+        client.close()
 
 	})
 
@@ -155,11 +150,11 @@ app.get("/shop", (request, response) => {
 
 	console.log("Page shopping")
 
-    MongoClient.connect(url, param, (err, db) => {
+    MongoClient.connect(url, param, (err, client) => {
 
-        let dbo = db.db("otamatone_fr")
+        if (err) throw err
 
-        dbo.collection("articles").find().toArray( (err, dataArticles) => {
+        client.db(dbName).collection("articles").find().toArray( (err, dataArticles) => {
 
             if (err) throw err
 
@@ -171,7 +166,9 @@ app.get("/shop", (request, response) => {
 
         })
 
-    })	
+        client.close()	
+    
+    })
 
 })
 
@@ -180,11 +177,11 @@ app.get("/videos", (request, response) => {
 
 	console.log("Page vidéos")
 
-    MongoClient.connect(url, param, (err, db) => {
+    MongoClient.connect(url, param, (err, client) => {
 
-        let dbo = db.db("otamatone_fr")
+        if (err) throw err
 
-        dbo.collection("videos").find().toArray( (err, dataVideos) => {
+        client.db(dbName).collection("videos").find().toArray( (err, dataVideos) => {
 
             response.render("layouts/videos/video", {
 
@@ -193,6 +190,8 @@ app.get("/videos", (request, response) => {
             })
 
         })
+
+        client.close()
 
     })
 
