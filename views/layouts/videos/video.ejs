@@ -1,0 +1,32 @@
+<!-- INCLUDE header -->
+<% include ../header %>
+
+<section class="ui container">
+	
+	<div class="ui horizontal divider"><h2>Nos vidéos</h2></div>
+	
+	<div class="ui three column doubling stackable grid">
+		
+		<!-- First column -->
+		<% videos.forEach(function(video) { %>
+		<div class="column bigVidContent">
+			
+			<div class="ui segment">
+
+				<h3 class="ui center aligned header"><%= video.titleVideo %></h3>
+				
+				<div class="iframeContainer"><iframe src="<%= video.video %>" frameborder="0"></iframe></div>
+
+			</div>
+
+		</div>
+		<% }) %>
+		<!-- ! First column ! -->
+	</div>
+
+	<div class="ui divider"></div>
+
+</section>
+
+<!-- INCLUDE footer -->
+<% include ../footer %>

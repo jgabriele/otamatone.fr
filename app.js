@@ -3,23 +3,30 @@ let express = require("express")
 let path = require("path")
 let app = express()
 
-// Database Connexion
+// Database Params
 const MongoClient = require("mongodb").MongoClient
 const url = "mongodb://localhost:27017/otamatone_fr"
 const param = { useNewUrlParser: true }
+const dbName = "otamatone_fr"
 
-MongoClient.connect(url, param, (err, db) => {
+let connection = {}
 
-	if (err) throw err
+MongoClient.connect(url, param, dbName, (err, db) => {
 
-	console.log("Connected to database !")
+    if (err) throw err
+
+    connection = db
+
+    console.log("Connected to database")
 
 })
+
 
 
 // TEMPLATE ENGINE EJS
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
+
 
 // STATIC FILES
 app.use("/assets", express.static(path.join(__dirname, "public")))
@@ -29,15 +36,9 @@ app.use("/assets", express.static(path.join(__dirname, "public")))
 
 
 // LANDING PAGE
-app.get("/accueil", (request, response) => {
+app.get("/", (request, response) => {
 
 	console.log("Page d'acceuil")
-
-	MongoClient.connect(url, param, (err, db) => {
-
-        if (err) throw err
-
-        let dbo = db.db("otamatone_fr")
 
         let executionNumber = 0
         let renderVideos = {}
@@ -60,11 +61,6 @@ app.get("/accueil", (request, response) => {
 
         function renderData() {
 
-            //console.log("Les données des videos ", renderVideos)
-            //console.log("Les données des cours ", renderCourses)
-            //console.log(renderPosts)
-            //console.log(renderArticles)
-
             response.render("layouts/home/accueil", {
 
                 videos: renderVideos,
@@ -79,8 +75,6 @@ app.get("/accueil", (request, response) => {
         function getDataCourses (err, dataCourses) {
 
             if (err) throw err
-
-            //console.log("Récupération des données cours", renderCourses)
 
             executionNumber++
             renderCourses = dataCourses
@@ -116,12 +110,10 @@ app.get("/accueil", (request, response) => {
 
         }
 
-        dbo.collection("videos").find().limit(3).toArray(getDataVideos)
-        dbo.collection("courses").find().toArray(getDataCourses)
-        dbo.collection("posts").find().toArray(getDataPosts)
-        dbo.collection("articles").find().toArray(getDataArticles)
-
-    })
+        connection.db(dbName).collection("videos").find().limit(3).toArray(getDataVideos)
+        connection.db(dbName).collection("courses").find().limit(3).toArray(getDataCourses)
+        connection.db(dbName).collection("posts").find().limit(3).toArray(getDataPosts)
+        connection.db(dbName).collection("articles").find().limit(3).toArray(getDataArticles)
 
 })
 
@@ -130,21 +122,17 @@ app.get("/apprendre", (request, response) => {
 
 	console.log("Apprendre l'otamatone")
 
-	MongoClient.connect(url, param, (err, db) => {
+    /*console.log(connection)*/
 
-		if (err) throw err
+    connection.db(dbName).collection("courses").find().toArray( (err, dataCourses) => {
 
-		let dbo = db.db("otamatone_fr")
+        if (err) throw err
 
-		dbo.collection("courses").find().toArray((err, results) => {
- 
-			if (err) throw err
+        response.render("layouts/learn/apprendre", {
+            courses: dataCourses
+        })
 
-			response.render("layouts/learn/apprendre", {courses: results})
-
-		})
-
-	})
+    })
 
 })
 
@@ -162,7 +150,17 @@ app.get("/shop", (request, response) => {
 
 	console.log("Page shopping")
 
-	response.render("layouts/shop/shopping")
+    connection.db(dbName).collection("articles").find().toArray( (err, dataArticles) => {
+
+        if (err) throw err
+
+        response.render("layouts/shop/shopping", {
+
+            articles: dataArticles
+
+        })
+
+    })
 
 })
 
@@ -170,6 +168,16 @@ app.get("/shop", (request, response) => {
 app.get("/videos", (request, response) => {
 
 	console.log("Page vidéos")
+
+    connection.db(dbName).collection("videos").find().toArray( (err, dataVideos) => {
+
+        response.render("layouts/videos/video", {
+
+            videos: dataVideos
+
+        })
+
+    })
 
 })
 

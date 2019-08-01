@@ -103,15 +103,9 @@
 
 
 /* Articles part */
-#kumamonButton {
+#articlesButton {
 
-	margin-top: 22px;
-
-}
-
-#ninjaButton {
-
-	margin-top: 9px;
+	margin-top: 50px;
 
 }
 /* ! Articles part ! */
@@ -139,6 +133,14 @@
 }
 /* ! Footer part ! */
 
+/* shop page */
+.ui.animated.fade.right.floated.button {
+	
+	margin-top: 50px;
+
+}
+/* ! shop page ! */
+
 /* Media Queries */
 
 @media screen and (min-width: 768px){
@@ -158,3 +160,5 @@
 		width: 260px;
 	}
 }
+
+/* ! Media Queries ! */
