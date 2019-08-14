@@ -1,0 +1,36 @@
+<!-- INCLUDE header -->
+<% include ../header %>
+
+<section class="ui container">
+	
+	<div class="ui horizontal divider"><h2>Au détail</h2></div>
+
+	<div class="ui segments">
+		
+		<div class="ui segment">
+
+			<h3 class="ui center aligned header"><%= videos.titleVideo %></h3>
+
+			<p>
+				<div class="iframeContainer"><iframe src="<%= videos.video %>" frameborder="0"></iframe></div>
+			</p>
+
+			<div class="ui secondary segment">
+				
+				<p>
+					<span>Description: </span><%= videos.description %>
+				</p>
+
+				<p>
+					<span>Catégorie: </span> <%= videos.categories %>
+				</p>
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+<!-- INCLUDE footer -->
+<% include ../footer %>

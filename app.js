@@ -3,12 +3,11 @@ let express = require("express")
 let path = require("path")
 let app = express()
 
-// Database Params
+// Database Params & connection
 const MongoClient = require("mongodb").MongoClient
 const url = "mongodb://localhost:27017/otamatone_fr"
 const param = { useNewUrlParser: true }
 const dbName = "otamatone_fr"
-
 let connection = {}
 
 MongoClient.connect(url, param, dbName, (err, db) => {
@@ -32,7 +31,7 @@ app.set("views", path.join(__dirname, "views"))
 app.use("/assets", express.static(path.join(__dirname, "public")))
 
 
-// ROUTING
+// APP ROUTING
 
 
 // LANDING PAGE
@@ -40,80 +39,80 @@ app.get("/", (request, response) => {
 
 	console.log("Page d'acceuil")
 
-        let executionNumber = 0
-        let renderVideos = {}
-        let renderCourses = {}
-        let renderPosts = {}
-        let renderArticles = {}
+    let executionNumber = 0
+    let renderVideos = {}
+    let renderCourses = {}
+    let renderPosts = {}
+    let renderArticles = {}
 
-        function getDataVideos (err, dataVideos) {
+    function getDataVideos (err, dataVideos) {
 
-            if (err) throw err
+        if (err) throw err
 
-            renderVideos = dataVideos
+        renderVideos = dataVideos
 
-            executionNumber++
+        executionNumber++
 
-            if (executionNumber === 4) {
-                renderData()
-            }
+        if (executionNumber === 4) {
+            renderData()
+        }
+    }
+
+    function renderData() {
+
+        response.render("layouts/home/accueil", {
+
+            videos: renderVideos,
+            courses: renderCourses,
+            posts: renderPosts,
+            articles: renderArticles
+
+        })
+
+    }
+
+    function getDataCourses (err, dataCourses) {
+
+        if (err) throw err
+
+        executionNumber++
+        renderCourses = dataCourses
+
+        if (executionNumber === 4) {
+            renderData()
+        }
+    }
+
+    function getDataPosts (err, dataPosts) {
+
+        if (err) throw err
+
+        executionNumber++
+        renderPosts = dataPosts
+
+        if (executionNumber === 4) {
+            renderData()
         }
 
-        function renderData() {
+    }
 
-            response.render("layouts/home/accueil", {
+    function getDataArticles (err, dataArticles) {
 
-                videos: renderVideos,
-                courses: renderCourses,
-                posts: renderPosts,
-                articles: renderArticles
+        if (err) throw err
 
-            })
+        executionNumber++
+        renderArticles = dataArticles
 
+        if (executionNumber === 4) {
+            renderData()
         }
 
-        function getDataCourses (err, dataCourses) {
+    }
 
-            if (err) throw err
-
-            executionNumber++
-            renderCourses = dataCourses
-
-            if (executionNumber === 4) {
-                renderData()
-            }
-        }
-
-        function getDataPosts (err, dataPosts) {
-
-            if (err) throw err
-
-            executionNumber++
-            renderPosts = dataPosts
-
-            if (executionNumber === 4) {
-                renderData()
-            }
-
-        }
-
-        function getDataArticles (err, dataArticles) {
-
-            if (err) throw err
-
-            executionNumber++
-            renderArticles = dataArticles
-
-            if (executionNumber === 4) {
-                renderData()
-            }
-
-        }
-
-        connection.db(dbName).collection("videos").find().limit(3).toArray(getDataVideos)
-        connection.db(dbName).collection("courses").find().limit(3).toArray(getDataCourses)
-        connection.db(dbName).collection("posts").find().limit(3).toArray(getDataPosts)
-        connection.db(dbName).collection("articles").find().limit(3).toArray(getDataArticles)
+    connection.db(dbName).collection("videos").find().limit(3).toArray(getDataVideos)
+    connection.db(dbName).collection("courses").find().limit(3).toArray(getDataCourses)
+    connection.db(dbName).collection("posts").find().limit(3).toArray(getDataPosts)
+    connection.db(dbName).collection("articles").find().limit(3).toArray(getDataArticles)
 
 })
 
@@ -121,8 +120,6 @@ app.get("/", (request, response) => {
 app.get("/apprendre", (request, response) => {
 
 	console.log("Apprendre l'otamatone")
-
-    /*console.log(connection)*/
 
     connection.db(dbName).collection("courses").find().toArray( (err, dataCourses) => {
 
@@ -145,7 +142,7 @@ app.get("/news", (request, response) => {
 
 })
 
-// SHOP 
+// SHOP PAGE
 app.get("/shop", (request, response) => {
 
 	console.log("Page shopping")
@@ -181,10 +178,29 @@ app.get("/videos", (request, response) => {
 
 })
 
+// VIDEO DETAIL
+app.get("/detailVideo/:titleVideo", (request, response) => {
+
+    console.log("Détail video")
+
+    connection.db(dbName).collection("videos").findOne( (err, dataVideos) => {
+
+        if (err) throw err
+
+        response.render("layouts/videos/detailVideo", {
+
+            videos: dataVideos
+
+        })
+
+    })
+
+})
+
 // CONTACT PAGE
 app.get("/contact", (request, response) => {
 
-	console.log('Page de contact')
+	response.render("layouts/contact/contactUs")
 
 })
 

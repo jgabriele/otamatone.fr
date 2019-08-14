@@ -1,0 +1,36 @@
+<!-- INCLUDE header -->
+<% include ../header %>
+
+<section class="ui container">
+	
+	<div class="ui horizontal divider"><h2>Laisser nous un message !</h2></div>
+	
+	<form action="/contact" method="post" class="ui form">
+
+
+		<div class="field">
+			<label for="username">Username</label>
+			<input id="username" type="text" placeholder="Username">
+		</div>
+
+		<div class="field">
+			<label for="email">E-mail</label>
+			<input id="email" type="text" placeholder="E-mail">
+		</div>
+
+		<div class="field">
+			<label for="message">Messages</label>
+			<textarea name="message" id="message"></textarea>
+		</div>
+
+		<button type="submit" class="ui blue labeled submit icon button">
+			<i class="icon edit"></i>
+			Envoyer
+		</button>
+
+	</form>
+
+</section>
+
+<!-- INCLUDE footer -->
+<% include ../footer %>
