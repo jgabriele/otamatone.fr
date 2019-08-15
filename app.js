@@ -39,8 +39,6 @@ app.use("/assets", express.static(path.join(__dirname, "public")))
 // LANDING PAGE
 app.get("/", (request, response) => {
 
-	console.log("Page d'acceuil")
-
     let executionNumber = 0
     let renderVideos = {}
     let renderCourses = {}
@@ -121,8 +119,6 @@ app.get("/", (request, response) => {
 // LEARN OTAMATONE
 app.get("/apprendre", (request, response) => {
 
-	console.log("Apprendre l'otamatone")
-
     connection.db(dbName).collection("courses").find().toArray( (err, dataCourses) => {
 
         if (err) throw err
@@ -147,8 +143,6 @@ app.get("/news", (request, response) => {
 // SHOP PAGE
 app.get("/shop", (request, response) => {
 
-	console.log("Page shopping")
-
     connection.db(dbName).collection("articles").find().toArray( (err, dataArticles) => {
 
         if (err) throw err
@@ -166,8 +160,6 @@ app.get("/shop", (request, response) => {
 // VIDEO PAGE
 app.get("/videos", (request, response) => {
 
-	console.log("Page vidéos")
-
     connection.db(dbName).collection("videos").find().toArray( (err, dataVideos) => {
 
         response.render("layouts/videos/video", {
@@ -182,10 +174,6 @@ app.get("/videos", (request, response) => {
 
 // VIDEO DETAIL
 app.get("/detailVideo/:id", (request, response) => {
-
-    console.log("Détail video")
-
-    console.log("Id de request.params: ", request.params.id)
 
     let idToFind = request.params.id
 
