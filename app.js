@@ -5,6 +5,8 @@ let app = express()
 
 // Database Params & connection
 const MongoClient = require("mongodb").MongoClient
+const MongoObjectID = require("mongodb").ObjectID
+
 const url = "mongodb://localhost:27017/otamatone_fr"
 const param = { useNewUrlParser: true }
 const dbName = "otamatone_fr"
@@ -179,11 +181,17 @@ app.get("/videos", (request, response) => {
 })
 
 // VIDEO DETAIL
-app.get("/detailVideo/:titleVideo", (request, response) => {
+app.get("/detailVideo/:id", (request, response) => {
 
     console.log("Détail video")
 
-    connection.db(dbName).collection("videos").findOne( (err, dataVideos) => {
+    console.log("Id de request.params: ", request.params.id)
+
+    let idToFind = request.params.id
+
+    let objectToFind = { _id: new MongoObjectID(idToFind) }
+
+    connection.db(dbName).collection("videos").findOne(objectToFind, (err, dataVideos) => {
 
         if (err) throw err
 
